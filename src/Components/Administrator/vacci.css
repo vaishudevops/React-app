@@ -1,0 +1,25 @@
+.VaccineCard{
+
+    width : 100%;
+    height: 100vh;
+    display : flexbox;
+    justify-content: center;
+    align-items: center;
+}
+table , td, th{
+    border : 1px solid;
+}
+table{
+    border: 2px solid forestgreen;
+    width: 800px;
+    height: 200px;
+    
+}
+
+th{
+    border-bottom: 1px solid black;
+}
+td{
+    text-align: left;
+}
+
