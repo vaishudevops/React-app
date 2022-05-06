@@ -38,7 +38,7 @@ import VaccineCard from "./Components/Administrator/VaccinationCard";
  
   
 const  client = new ApolloClient({
-  uri : "http://localhost:9090/gq",
+  uri : "https://vp-bri-graph-app.herokuapp.com/gq",
   cache : new InMemoryCache()
 })
 

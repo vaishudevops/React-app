@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,  } from "react";
 import { gql, useMutation,  useQuery} from "@apollo/client";
 import { useHistory } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const CREATE_VACCINE_MUTATION = gql`
 const AddVaccine = () =>{
      
      
-
+    const history = useHistory();
 
     const [vaccineState , setVaccineState] = useState<{PatientName : string, DOB : string, Vaccination : string, BrandName: string, GivenAt:string}>({
         PatientName : '' , DOB : '', Vaccination : '', BrandName: '', GivenAt:'',
@@ -53,7 +53,13 @@ const AddVaccine = () =>{
                 GivenAt: vaccineState.GivenAt,
         
             }
-        })
+      //  })
+        //.then(res =>{
+           // history.replace("/addpatient")
+         //  alert("Detals Saved Sucessfully")
+       }).catch(error =>{
+           alert("details saved sucessfully")
+       })
     }
 
     const PatientChangeHandler : React.ChangeEventHandler<HTMLSelectElement> = event =>{
@@ -79,7 +85,7 @@ console.log(vacci?.patients)
 
 
 
-
+console.log(vaccineState.PatientName)
 
 
     return (

@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "../node-graphql/src/model", "../node-graphql/src/db", "../node-graphql/src/server.js"  ]
 }

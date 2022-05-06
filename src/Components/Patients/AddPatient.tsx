@@ -1,7 +1,7 @@
 
 import React , {useState , useEffect} from "react";
 import {gql , useMutation} from "@apollo/client";
-import { Prompt } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import classes from './AddPatient.module.css'
 
 
@@ -26,10 +26,9 @@ mutation onCreatePatientMutation($PatientName : String! , $DOB : String! ,$Gende
 
 
 
-
 const AddPatient = () =>{
 
-    
+    const history = useHistory();
 
 const [patientState , setPatientState] = useState<{PatientName : string ,DOB : string , Gender : string ,BloodGroup : string, Height: string , Weight: string }>({
 
@@ -91,9 +90,12 @@ const createPatientHandler = (event : React.FormEvent) => {
             Weight : patientState.Weight,
             Height : patientState.Height,
         }
-    }).then(()=>{
-        alert("patient name sucessfully")
-    }).catch(console.log)
+     //})
+   // .then(res =>{
+     //alert("Detals Saved Sucessfully")
+    }).catch(error =>{
+         alert("data saved sucessfully")
+     })
     
 }
 
@@ -124,17 +126,17 @@ const HeightHandler : React.ChangeEventHandler<HTMLInputElement> = event =>{
 const nameBlurHandler = () =>{
     setNameInputBlur(true)
 }
+ const cancelEventHandler : React.FormEventHandler = (event) =>{
+     event.preventDefault()
+     history.replace("/")
+ }
 
-const formBlurHandler = () => {
-    setShowPrompt(true)
-}
 
-const submitHandler : React.FormEventHandler = (event) => {
-    event.preventDefault();
-   // console.log("PatientName : " , patientState.PatientName);
-}
+
    
-
+if(error){
+    return <p>Something went wrong</p>
+}
 
 return (
 
@@ -146,7 +148,7 @@ return (
                <h3 className="text-center">Create Patient</h3>
                </div>
                
-           <form onSubmit={submitHandler} onBlur={formBlurHandler}> 
+           <form> 
            <div className="card-body">
                <div className="form-group">
 
@@ -204,6 +206,9 @@ return (
               
 
                </div>
+               <div className="col-6">
+                    <button type="button" className=" form-control btn btn-block btn-danger"  onClick={cancelEventHandler}>Cancel</button>
+            </div>
                </form>
                <br/>
 
