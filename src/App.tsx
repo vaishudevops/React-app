@@ -29,12 +29,13 @@ export default App;
   import React  from "react";
 import { Route, Redirect , Switch}  from "react-router-dom";
 import Header from "./Components/Header/header";
-import AddPatient from "./Components/Patients/AddPatient";
-import AddVaccine from "./Components/Administrator/AddVaccination"
 
-import { Fragment } from "react";
+import { Fragment, lazy} from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import VaccineCard from "./Components/Administrator/VaccinationCard";
+
+const  AddPatient = lazy(()=>import( "./Components/Patients/AddPatient"))
+const AddVaccine =lazy(() => import ("./Components/Administrator/AddVaccination")) 
+const VaccineCard = lazy(() => import ("./Components/Administrator/VaccinationCard") ) 
  
   
 const  client = new ApolloClient({
@@ -54,7 +55,7 @@ function App() {
 
         <Route path='/' exact> 
 
-             <Redirect to='addpatient'/>
+             <Redirect to='/addpatient'/>
             </Route>
          
           <Route path='/addpatient' >
